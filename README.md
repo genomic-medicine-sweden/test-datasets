@@ -20,7 +20,5 @@ This branch contains test data to be used for automated testing with the [genomi
   - `HG002_ONT_UL_dorado0.4.0_sup4.1.0_5mCG_5hmCG.fastq.gz`: Gzipped FASTQ file containing test data subset for HG002 ONT UL dorado0.4.0 sup4.1.0 with 5mCG and 5hmCG modifications
   - `HG002_PacBio_Revio.bam`: BAM file containing Revio test data
   - `HG002_PacBio_Revio.fastq.gz`: Gzipped FASTQ file containing Revio test data
-  - `samplesheet.csv`: CSV file containing sample sheet data
-  - `samplesheet_multisample_bam.csv`: CSV file containing sample sheet data for multisample samples & BAM files
   - `snp_dbs.csv`: CSV file containing paths to SNV annotation database files 
 
