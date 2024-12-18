@@ -1,38 +1,23 @@
-# ![nfcore/test-datasets](docs/images/test-datasets_logo.png)
-Test data to be used for automated testing with the nf-core pipelines
+# test-datasets: `genomic-medicine-sweden/metaval`
 
-> ⚠️ **Do not merge your test data to `master`! Each pipeline has a dedicated branch (and a special one for modules)**
+This branch contains test data to be used for automated testing with the [genomic-medicine-sweden/metaval](https://github.com/genomic-medicine-sweden/meta-val) pipeline.
 
-## Introduction
+## Content of this repository
 
-nf-core is a collection of high quality Nextflow pipelines. This repository contains various files for CI and unit testing of nf-core pipelines and infrastructure.
+- `samplesheet.csv`: an input samplesheet.csv.
 
-The principle for nf-core test data is as small as possible, as large as necessary. Please see the [guidelines](https://nf-co.re/docs/contributing/test_data_guidelines) for more detailed information. Always ask for guidance on the [nf-core slack](https://nf-co.re/join) before adding new test data.
+- **reference/**
 
-## Documentation
+  - `reference.fasta`: a FASTA file containing a list of pathogen genomes.
+  - `accession2taxid,map`: a map file containing genome accessions of pathogens and their corresponding taxonomic IDs
 
-nf-core/test-datasets comes with documentation in the `docs/` directory:
-
-01. [Add a new  test dataset](https://github.com/nf-core/test-datasets/blob/master/docs/ADD_NEW_DATA.md)
-02. [Use an existing test dataset](https://github.com/nf-core/test-datasets/blob/master/docs/USE_EXISTING_DATA.md)
-
-## Downloading test data
-
-Due the large number of large files in this repository for each pipeline, we highly recommend cloning only the branches you would use.
-
-```bash
-git clone <url> --single-branch --branch <pipeline/modules/branch_name>
-```
-
-To subsequently clone other branches[^1]
-
-```bash
-git remote set-branches --add origin [remote-branch]
-git fetch
-```
-
-## Support
-
-For further information or help, don't hesitate to get in touch on our [Slack organisation](https://nf-co.re/join/slack) (a tool for instant messaging).
-
-[^1]: From [stackoverflow](https://stackoverflow.com/a/60846265/11502856)
+- **testdata/**
+  - `*fastq.gz`: FASTQ files, which can be raw FASTQ files, filtered FASTQ files, or FASTQ files after host removal.
+  - `*kraken2.report.txt`: `Kraken2` report files containing stats about classified and not classified reads.
+  - `*kraken2.classifiedreads.txt`: `Kraken2` result files containing the taxonomic assignment of each input read.
+  - `kraken2_k2_pluspf.tsv`: Standardized `Kraken2` taxonomic profiles for all samples.
+  - `*centrifuge.txt`: `Centrifuge` report files containing kraken-style report from `Centrifuge` output files.
+  - `*centrifuge.results.txt`: `Centrifuge` result files containing classification results.
+  - `centrifuge_p_compressed+h+v.tsv`: Standardized `Centrifuge` taxonomic profiles for all samples.
+  - `*_diamond.diamond.tsv`: `DIAMOND` classification results containing the taxonomic classification of hits.
+  - `diamond_diamond.tsv`: Standardized `DIAMOND` taxonomic profiles for all samples.
