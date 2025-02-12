@@ -1,5 +1,5 @@
 sample,fastq_1,fastq_2
-SAMPLE_1,/https://github.com/genomic-medicine-sweden/test-datasets/raw/refs/heads/16s/testdata/medium_Mock_dil_1_2_BC1.fastq.gz,
-SAMPLE_2,/https://github.com/genomic-medicine-sweden/test-datasets/raw/refs/heads/16s/testdata/medium_Mock_dil_1_2_BC3.fastq.gz,
-SAMPLE_3,/https://github.com/genomic-medicine-sweden/test-datasets/raw/refs/heads/16s/testdata/small_test_data2.fastq.gz,
-SAMPLE_4,/https://github.com/genomic-medicine-sweden/test-datasets/raw/refs/heads/16s/testdata/small_test_data3.fastq.gz,
+SAMPLE_1,https://github.com/genomic-medicine-sweden/test-datasets/raw/refs/heads/16s/testdata/medium_Mock_dil_1_2_BC1.fastq.gz,
+SAMPLE_2,https://github.com/genomic-medicine-sweden/test-datasets/raw/refs/heads/16s/testdata/medium_Mock_dil_1_2_BC3.fastq.gz,
+SAMPLE_3,https://github.com/genomic-medicine-sweden/test-datasets/raw/refs/heads/16s/testdata/small_test_data2.fastq.gz,
+SAMPLE_4,https://github.com/genomic-medicine-sweden/test-datasets/raw/refs/heads/16s/testdata/small_test_data3.fastq.gz,
