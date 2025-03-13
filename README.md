@@ -6,6 +6,11 @@ This branch contains test data to be used for automated testing with the [genomi
 
 - `samplesheet.csv`: an input samplesheet.csv.
 
+- **blastdb/**
+
+  - `blastn/blastn_testDB*`: a blastn test database.
+  - `blastx/diamond_testDB.dmnd`: a blastx (diamond) test database.
+
 - **reference/**
 
   - `reference.fasta`: a FASTA file containing a list of pathogen genomes.
