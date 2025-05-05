@@ -8,8 +8,8 @@ This branch contains test data to be used for automated testing with the [genomi
 
 - **blastdb/**
 
-  - `blastn/blastn_testDB*`: a blastn test database.
-  - `blastx/diamond_testDB.dmnd`: a blastx (diamond) test database.
+  - `blastn/blastn_testdb.tar.gz`: a blastn test database.
+  - `blastx/diamond_testdb.dmnd`: a blastx (diamond) test database.
 
 - **reference/**
 
