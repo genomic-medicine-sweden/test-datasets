@@ -11,13 +11,13 @@ wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRC
 gunzip -c data/GRCh38_no_alt_analysis_set.fasta.gz > data/GRCh38_no_alt_analysis_set.fasta
 
 # Download ONT HG002 haplotagged bam
-#aws s3 cp s3://ont-open-data/giab_2023.05/analysis/variant_calling/hg002_sup_60x/hg002.haplotagged.bam data/hg002.haplotagged.bam --no-sign-request 
-#aws s3 cp s3://ont-open-data/giab_2023.05/analysis/variant_calling/hg002_sup_60x/hg002.haplotagged.bam.bai data/hg002.haplotagged.bam.bai --no-sign-request 
+aws s3 cp s3://ont-open-data/giab_2023.05/analysis/variant_calling/hg002_sup_60x/hg002.haplotagged.bam data/hg002.haplotagged.bam --no-sign-request 
+aws s3 cp s3://ont-open-data/giab_2023.05/analysis/variant_calling/hg002_sup_60x/hg002.haplotagged.bam.bai data/hg002.haplotagged.bam.bai --no-sign-request 
 
 # Add aligned PacBio HG002, HG003, HG004 manually, from Nallo run, as
-# data/HG002_aligned_haplotagged.bam
-# data/HG003_aligned_haplotagged.bam
-# data/HG004_aligned_haplotagged.bam
+# data/HG002_aligned_haplotagged.bam (m84011_220902_175841_s1.hifi_reads.bam)
+# data/HG003_aligned_haplotagged.bam (m84010_220919_235306_s2.hifi_reads.bam)
+# data/HG004_aligned_haplotagged.bam (m84010_220919_232145_s1.hifi_reads.bam)
 # data/HG002_aligned_haplotagged.bam.bai
 # data/HG003_aligned_haplotagged.bam.bai
 # data/HG004_aligned_haplotagged.bam.bai
