@@ -13,7 +13,7 @@ This branch contains test data to be used for automated testing with the [genomi
 
 - **reference/**
 
-  - `reference.fasta`: a FASTA file containing a list of pathogen genomes.
+  - `reference.fasta.gz`: a compressed FASTA file containing a list of pathogen genomes.
   - `accession2taxid,map`: a map file containing genome accessions of pathogens and their corresponding taxonomic IDs
 
 - **testdata/**
