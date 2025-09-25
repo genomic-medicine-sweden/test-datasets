@@ -1,6 +1,7 @@
 # This file contains information on how the nallo testdata files are created.
 # If new regions need to be added, try to keep them in the beginning of the chromosomes. 
 
+rm -r tmp
 mkdir tmp
 
 # 1. From somalier sites (https://github.com/brentp/somalier/files/3412456/sites.hg38.vcf.gz), extract sites to make sex inference work. 
@@ -90,7 +91,7 @@ EOF
 seqtk subseq data/GRCh38_no_alt_analysis_set.fasta tmp/chromosomes_with_sequence.bed | seqtk seq -c -M tmp/test_somalier_small.bed | sed '/^>/ s/:.*//' | cat - tmp/extra_chr.fa | pigz -p 36 > tmp/hg38.test.fa.gz
 
 # Subsample to reduce size
-samtools view -@ 36 -s 0.8 -M -L tmp/test_somalier_small.bed data/HG002_haplotagged.bam -h -O BAM | samtools calmd -b - data/GRCh38_no_alt_analysis_set.fasta > tmp/hg002_somalier_small_revio.bam
+samtools view -@ 36 -s 0.8 -M -L tmp/test_somalier_small.bed data/HG002_haplotagged.bam -h -O BAM -N read_ids_to_remove.txt | samtools calmd -b - data/GRCh38_no_alt_analysis_set.fasta > tmp/hg002_somalier_small_revio.bam
 samtools view -@ 36 -s 0.8 -M -L tmp/test_somalier_small.bed data/HG003_haplotagged.bam -h -O BAM | samtools calmd -b - data/GRCh38_no_alt_analysis_set.fasta > tmp/hg003_somalier_small_revio.bam
 samtools view -@ 36 -s 0.6 -M -L tmp/test_somalier_small.bed data/HG004_haplotagged.bam -h -O BAM | samtools calmd -b - data/GRCh38_no_alt_analysis_set.fasta > tmp/hg004_somalier_small_revio.bam
 samtools view -@ 36 -s 0.5 -M -L tmp/test_somalier_small.bed data/hg002.haplotagged.bam -h -O BAM | samtools calmd -b - data/GRCh38_no_alt_analysis_set.fasta > tmp/hg002_somalier_small_ont.bam
@@ -107,7 +108,7 @@ echo "reads ONT HG002"
 samtools view tmp/hg002_somalier_small_ont.bam|wc -l
 
 # 6. Create a SVDB file from https://zenodo.org/records/11511513/files/CoLoRSdb.GRCh38.v1.0.0.pbsv.jasmine.vcf.gz 
-bcftools view -R tmp/test_somalier_small.bed  data/CoLoRSdb.GRCh38.v1.0.0.pbsv.jasmine.vcf.gz --output-type z --output tmp/colorsdb.test_data.vcf.gz
+bcftools view -R tmp/test_somalier_small.bed  data/CoLoRSdb.GRCh38.v1.0.0.pbsv.jasmine.vcf.gz --output-type z --no-version --output tmp/colorsdb.test_data.vcf.gz
 
 # 7. Copy files, and make one copy smaller
 cp tmp/colorsdb.test_data.vcf.gz reference/colorsdb.test_data.vcf.gz
