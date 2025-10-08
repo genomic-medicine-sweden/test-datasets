@@ -14,7 +14,7 @@ This branch contains test data to be used for automated testing with the [genomi
 - **reference/**
 
   - `reference.fasta.gz`: a compressed FASTA file containing a list of pathogen genomes.
-  - `accession2taxid,map`: a map file containing genome accessions of pathogens and their corresponding taxonomic IDs
+  - `accession2taxid,map`: a map file containing genome accessions of pathogens, corresponding taxonomic IDs and organism names.
 
 - **testdata/**
 
@@ -29,5 +29,5 @@ This branch contains test data to be used for automated testing with the [genomi
   - `diamond_diamond.tsv`: Standardized `DIAMOND` taxonomic profiles for all samples.
 
 - **genomesdb/**
-  - `taxid2genome.map`: A map file containing taxonomic IDs and their corresponding genome files
+  - `taxid2genome.map`: A map file containing taxonomic IDs, organism names and corresponding genome files.
   - `genomes/`: Genome files listed in the map file.
