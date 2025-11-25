@@ -93,25 +93,26 @@ minimap2 -d tmp/hg38.test.mmi <(gunzip -c tmp/hg38.test.fa.gz)
 
 # Prepare small bam files by subsampling and remapping
 function prepare_bam {
-  local in_bam=$1
-  local out_bam=$2
+  local miniamp_preset=$1
+  local in_bam=$2
+  local out_bam=$3
   local rg_file="tmp/$(basename $out_bam .bam).rg.txt"
 
   # Extract read group information to keep it after remapping
   samtools view -H ${in_bam} | grep "^@RG" > ${rg_file}
 
   # Subsample and remap. We must reheader to keep read group information
-  samtools view -M -L tmp/test_somalier_small.bed ${in_bam} -h -O BAM -u \
+  samtools view -s 0.5 -M -L tmp/test_somalier_small.bed ${in_bam} -h -O BAM -u -x HP,PS,AS,CC,CG,CP,H1,H2,HI,H0,IH,MC,MD,MQ,NM,SA,TS\
     | samtools fastq -T '*' \
-    | minimap2 -a -x map-hifi -y --secondary=no -Y --MD -t 36 tmp/hg38.test.mmi - \
+    | minimap2 -a -x ${miniamp_preset} -y --secondary=no -Y --MD -t 36 tmp/hg38.test.mmi - \
     | samtools reheader  -c "cat - ${rg_file}" - \
     | samtools sort -o ${out_bam}
 }
 
-prepare_bam data/HG002_haplotagged.bam tmp/hg002_somalier_small_revio.bam
-prepare_bam data/HG003_haplotagged.bam tmp/hg003_somalier_small_revio.bam
-prepare_bam data/HG004_haplotagged.bam tmp/hg004_somalier_small_revio.bam
-prepare_bam data/hg002_haplotagged.bam tmp/hg002_somalier_small_ont.bam
+prepare_bam map-hifi data/HG002_haplotagged.bam tmp/hg002_somalier_small_revio.bam
+prepare_bam map-hifi data/HG003_haplotagged.bam tmp/hg003_somalier_small_revio.bam
+prepare_bam map-hifi data/HG004_haplotagged.bam tmp/hg004_somalier_small_revio.bam
+prepare_bam map-ont data/hg002_haplotagged.bam tmp/hg002_somalier_small_ont.bam
 
 # Make fastq
 samtools fastq -T \* -@ 36 tmp/hg002_somalier_small_revio.bam | pigz -p 36 > tmp/hg002_somalier_small_revio.fastq.gz
