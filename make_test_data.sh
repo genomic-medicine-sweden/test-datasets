@@ -93,7 +93,7 @@ minimap2 -d tmp/hg38.test.mmi <(gunzip -c tmp/hg38.test.fa.gz)
 
 # Prepare small bam files by subsampling and remapping
 function prepare_bam {
-  local miniamp_preset=$1
+  local minimap_preset=$1
   local in_bam=$2
   local out_bam=$3
   local rg_file="tmp/$(basename $out_bam .bam).rg.txt"
