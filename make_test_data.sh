@@ -112,7 +112,7 @@ function prepare_bam {
 prepare_bam map-hifi data/HG002_haplotagged.bam tmp/hg002_somalier_small_revio.bam
 prepare_bam map-hifi data/HG003_haplotagged.bam tmp/hg003_somalier_small_revio.bam
 prepare_bam map-hifi data/HG004_haplotagged.bam tmp/hg004_somalier_small_revio.bam
-prepare_bam map-ont data/hg002_haplotagged.bam tmp/hg002_somalier_small_ont.bam
+prepare_bam lr:hq data/hg002_haplotagged.bam tmp/hg002_somalier_small_ont.bam
 
 # Make fastq
 samtools fastq -T \* -@ 36 tmp/hg002_somalier_small_revio.bam | pigz -p 36 > tmp/hg002_somalier_small_revio.fastq.gz
