@@ -104,7 +104,7 @@ function prepare_bam {
   # Subsample and remap. We must reheader to keep read group information
   samtools view -s 0.5 -M -L tmp/test_somalier_small.bed ${in_bam} -h -O BAM -u -x HP,PS,AS,CC,CG,CP,H1,H2,HI,H0,IH,MC,MD,MQ,NM,SA,TS\
     | samtools fastq -T '*' \
-    | minimap2 -a -x ${miniamp_preset} -y --secondary=no -Y --MD -t 36 tmp/hg38.test.mmi - \
+    | minimap2 -a -x ${minimap_preset} -y --secondary=no -Y --MD -t 36 tmp/hg38.test.mmi - \
     | samtools reheader  -c "cat - ${rg_file}" - \
     | samtools sort -o ${out_bam}
 }
