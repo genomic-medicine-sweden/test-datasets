@@ -5,7 +5,17 @@ This branch contains test data to be used for automated testing with the [genomi
 ## Content of this repository
 
 - `samplesheet.csv`: an input samplesheet.csv.
-- `phages_taxid.txt`: a list of phages taxid.
+- `phages_taxid.txt`: a list of phages taxid to be excluded from downstream analysis. This file was prepared using [taxonkit](https://bioinf.shenwei.me/taxonkit/)
+```sh
+conda install bioconda::taxonkit
+# Download NCBI taxonomy database
+wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdump.tar.gz
+tar -xzf taxdump.tar.gz
+export TAXONKIT_DB="$PWD"
+# Most of phages from our lab belong to the class Caudoviricetes
+echo Caudoviricetes | taxonkit name2taxid | taxonkit lineage -i 2 -r -L
+taxonkit list --ids 2731619 --indent "" > phages_taxid.txt
+```
 - **blastdb/**
 
   - `blastn/blastn_testdb.tar.gz`: a blastn test database.
