@@ -5,7 +5,7 @@ This branch contains test data to be used for automated testing with the [genomi
 ## Content of this repository
 
 - `samplesheet.csv`: an input samplesheet.csv.
-
+- `phages_taxid.txt`: a list of phages taxid.
 - **blastdb/**
 
   - `blastn/blastn_testdb.tar.gz`: a blastn test database.
