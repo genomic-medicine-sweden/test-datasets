@@ -1,4 +1,4 @@
-taxonomy_id	name	rank	lineage	SRR13439799_se_SRR13439799_p_compressed+h+v.centrifuge	SRR13439802_pe_SRR13439802_p_compressed+h+v.centrifuge	SRR13439790_pe_SRR13439790_p_compressed+h+v.centrifuge	SRR13439813_pe_SRR13439813_p_compressed+h+v.centrifuge
+taxonomy_id	name	rank	lineage	SRR13439799_p_compressed+h+v.centrifuge	SRR13439802_p_compressed+h+v.centrifuge	SRR13439790_p_compressed+h+v.centrifuge	SRR13439813_p_compressed+h+v.centrifuge
 0				532	147900	30273	307667
 1	root	no rank		0	2362	525	10570
 131567	cellular organisms	no rank		4	18	13	63
