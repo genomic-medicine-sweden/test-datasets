@@ -1,4 +1,4 @@
-taxonomy_id	name	rank	lineage	SRR13439799_se_SRR13439799_k2_pluspf.kraken2.kraken2.report	SRR13439802_pe_SRR13439802_k2_pluspf.kraken2.kraken2.report	SRR13439790_pe_SRR13439790_k2_pluspf.kraken2.kraken2.report	SRR13439813_pe_SRR13439813_k2_pluspf.kraken2.kraken2.report
+taxonomy_id	name	rank	lineage	SRR13439799_k2_pluspf.kraken2.kraken2.report	SRR13439802_k2_pluspf.kraken2.kraken2.report	SRR13439790_k2_pluspf.kraken2.kraken2.report	SRR13439813_k2_pluspf.kraken2.kraken2.report
 0				685	165966	33304	275483
 1	root	no rank		0	133	73	111
 131567	cellular organisms	no rank		13	1644	73	264

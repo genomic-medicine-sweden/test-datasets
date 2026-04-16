@@ -1,4 +1,4 @@
-taxonomy_id	name	rank	lineage	SRR13439799_se_SRR13439799_diamond.diamond	SRR13439802_pe_SRR13439802_diamond.diamond	SRR13439790_pe_SRR13439790_diamond.diamond	SRR13439813_pe_SRR13439813_diamond.diamond
+taxonomy_id	name	rank	lineage	SRR13439799_diamond.diamond	SRR13439802_diamond.diamond	SRR13439790_diamond.diamond	SRR13439813_diamond.diamond
 0				1170	679854	1412095	389572
 1491	Clostridium botulinum	species	Bacteria;Terrabacteria group;Bacillota;Clostridia;Eubacteriales;Clostridiaceae;Clostridium;Clostridium botulinum	20	1689	471	63
 11320	Influenza A virus	no rank	Viruses;Riboviria;Orthornavirae;Negarnaviricota;Polyploviricotina;Insthoviricetes;Articulavirales;Orthomyxoviridae;Alphainfluenzavirus;Alphainfluenzavirus influenzae	13	0	2	0
