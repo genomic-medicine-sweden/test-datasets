@@ -36,9 +36,9 @@ EOF
 cat tmp/paraphase.bed tmp/test_data.bed tmp/chr16.bed tmp/chrX.bed tmp/chrM.bed > tmp/reference_regions.bed
 cat tmp/paraphase.bed tmp/test_data.bed tmp/chr16.bed tmp/chrX.bed tmp/chrM.bed > tmp/test_somalier_small.bed
 
-# Create call regions for DeepVariant. We can remove chrX and chr17, to shave off some time. We still need quite a few chr16 regions for peddy, but all of those do not have VEP cache files, resulting in no annotated variants...
+# Create call regions for DeepVariant. We can remove chrX,chr17 and chrM, to shave off some time. We still need quite a few chr16 regions for peddy, but all of those do not have VEP cache files, resulting in no annotated variants...
 # By updating the cache we could potentially remove the paraphase region and only keep the peddy sites.
-cat tmp/paraphase.bed tmp/test_data.bed tmp/chr16.bed tmp/chrX.bed tmp/chrM.bed | grep -v -E "chrX|chr17" > reference/snv_call_regions.bed
+cat tmp/paraphase.bed tmp/test_data.bed tmp/chr16.bed tmp/chrX.bed tmp/chrM.bed | grep -v -E "chrX|chr17|chrM" > reference/snv_call_regions.bed
 
 # 4. Use the BED file to cut out regions in the BAM files
 
