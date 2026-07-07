@@ -24,3 +24,5 @@ All PRs require an approval from someone in the nallo-devs team before merging.
   - `HG002_PacBio_Revio.fastq.gz`: Gzipped FASTQ file containing Revio test data
   - `snp_dbs.csv`: CSV file containing paths to SNV annotation database files
   - `paraphrase_rules.yaml`: Example paraphrase rules.
+  - `HG002_reads_to_assembly.bam`: BAM file containing reads from HG002 aligned to their assembly 
+  - `HG002_aligned_assembly.bam`: BAM file with rassembly of HG002 reads aligned to the hg38 reference
