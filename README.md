@@ -7,6 +7,8 @@ This branch contains test data to be used for automated testing with the [genomi
 - `samplesheet.csv`: an input samplesheet.csv.
 - `samplesheet_v1.csv`: an input samplesheet contains three more meta columns: `library_type`, `is_ntc` and `batch`  
 - `phages_taxid.txt`: a list of phages taxid to be excluded from downstream analysis. This file was prepared using [taxonkit](https://bioinf.shenwei.me/taxonkit/)
+- `phages_taxid_test.txt`: a list of phages taxid to be excluded from running test configs. 
+
 ```sh
 conda install bioconda::taxonkit
 # Download NCBI taxonomy database
