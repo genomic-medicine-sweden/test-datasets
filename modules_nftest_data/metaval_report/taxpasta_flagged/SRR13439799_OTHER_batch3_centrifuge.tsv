@@ -1,0 +1,48 @@
+taxonomy_id	name	rank	lineage	SRR13439799
+0				532
+131567	cellular organisms	no rank		4
+9606	Homo sapiens	species	Eukaryota;Metazoa;Chordata;Craniata;Sarcopterygii;Mammalia;Opisthokonta;Euarchontoglires;Primates;Haplorrhini;Simiiformes;Catarrhini;Hominoidea;Hominidae;Homininae;Homo;Homo sapiens	648
+1428	Bacillus thuringiensis	species	Bacteria;Terrabacteria group;Bacillota;Bacilli;Bacillales;Bacillaceae;Bacillus;Bacillus cereus group;Bacillus thuringiensis	1
+324767	Bacillus infantis	species	Bacteria;Terrabacteria group;Bacillota;Bacilli;Bacillales;Bacillaceae;Bacillus;Bacillus infantis	1
+1446792	Bacillus sp. Pc3	species	Bacteria;Terrabacteria group;Bacillota;Bacilli;Bacillales;Bacillaceae;Bacillus;Bacillus sp. Pc3	1
+1221500	Fictibacillus phosphorivorans	species	Bacteria;Terrabacteria group;Bacillota;Bacilli;Bacillales;Bacillaceae;Fictibacillus;Fictibacillus phosphorivorans	1
+161360	Planococcus antarcticus	species	Bacteria;Terrabacteria group;Bacillota;Bacilli;Bacillales;Planococcaceae;Planococcus;Planococcus antarcticus	1
+1304	Streptococcus salivarius	species	Bacteria;Terrabacteria group;Bacillota;Bacilli;Lactobacillales;Streptococcaceae;Streptococcus;Streptococcus salivarius	1
+197614	Streptococcus pasteurianus	species	Bacteria;Terrabacteria group;Bacillota;Bacilli;Lactobacillales;Streptococcaceae;Streptococcus;Streptococcus pasteurianus	1
+33964	Leuconostoc citreum	species	Bacteria;Terrabacteria group;Bacillota;Bacilli;Lactobacillales;Lactobacillaceae;Leuconostoc;Leuconostoc citreum	1
+165096	Weissella koreensis	species	Bacteria;Terrabacteria group;Bacillota;Bacilli;Lactobacillales;Lactobacillaceae;Weissella;Weissella koreensis	1
+1538	Clostridium ljungdahlii	species	Bacteria;Terrabacteria group;Bacillota;Clostridia;Eubacteriales;Clostridiaceae;Clostridium;Clostridium ljungdahlii	1
+461876	Alkaliphilus oremlandii	species	Bacteria;Terrabacteria group;Bacillota;Clostridia;Peptostreptococcales;Natronincolaceae;Alkaliphilus;Alkaliphilus oremlandii	1
+1731	Peptoclostridium acidaminophilum	species	Bacteria;Terrabacteria group;Bacillota;Clostridia;Peptostreptococcales;Peptoclostridiaceae;Peptoclostridium;Peptoclostridium acidaminophilum	1
+1496	Clostridioides difficile	species	Bacteria;Terrabacteria group;Bacillota;Clostridia;Peptostreptococcales;Peptostreptococcaceae;Clostridioides;Clostridioides difficile	1
+39491	Agathobacter rectalis	species	Bacteria;Terrabacteria group;Bacillota;Clostridia;Lachnospirales;Lachnospiraceae;Agathobacter;Agathobacter rectalis	1
+184064	Thermodesulfobium narugense	species	Bacteria;Thermodesulfobiota;Thermodesulfobiia;Thermodesulfobiales;Thermodesulfobiaceae;Thermodesulfobium;Thermodesulfobium narugense	1
+1618207	Psychromicrobium lacuslunae	species	Bacteria;Terrabacteria group;Actinomycetota;Actinomycetes;Micrococcales;Micrococcaceae;Psychromicrobium;Psychromicrobium lacuslunae	1
+182640	Kribbella flavida	species	Bacteria;Terrabacteria group;Actinomycetota;Actinomycetes;Propionibacteriales;Kribbellaceae;Kribbella;Kribbella flavida	1
+1617448	Geminocystis sp. NIES-3709	species	Bacteria;Terrabacteria group;Cyanobacteriota;Cyanophyceae;Oscillatoriophycideae;Chroococcales;Geminocystaceae;Geminocystis;Geminocystis sp. NIES-3709	1
+401619	Candidatus Riesia pediculicola	species	Bacteria;Pseudomonadota;Gammaproteobacteria;Enterobacterales;Enterobacteriaceae;Candidatus Riesia;Candidatus Riesia pediculicola	1
+1158459	Kosakonia sacchari	species	Bacteria;Pseudomonadota;Gammaproteobacteria;Enterobacterales;Enterobacteriaceae;Kosakonia;Kosakonia sacchari	1
+62322	Shewanella baltica	species	Bacteria;Pseudomonadota;Gammaproteobacteria;Alteromonadales;Shewanellaceae;Shewanella;Shewanella baltica	1
+271098	Shewanella halifaxensis	species	Bacteria;Pseudomonadota;Gammaproteobacteria;Alteromonadales;Shewanellaceae;Shewanella;Shewanella halifaxensis	1
+470	Acinetobacter baumannii	species	Bacteria;Pseudomonadota;Gammaproteobacteria;Moraxellales;Moraxellaceae;Acinetobacter;Acinetobacter calcoaceticus/baumannii complex;Acinetobacter baumannii	1
+446	Legionella pneumophila	species	Bacteria;Pseudomonadota;Gammaproteobacteria;Legionellales;Legionellaceae;Legionella;Legionella pneumophila	1
+271065	Methylotuvimicrobium alcaliphilum	species	Bacteria;Pseudomonadota;Gammaproteobacteria;Methylococcales;Methylococcaceae;Methylotuvimicrobium;Methylotuvimicrobium alcaliphilum	1
+119864	Marinomonas mediterranea	species	Bacteria;Pseudomonadota;Gammaproteobacteria;Oceanospirillales;Oceanospirillaceae;Marinomonas;Marinomonas mediterranea	1
+19	Syntrophotalea carbinolica	species	Bacteria;Thermodesulfobacteriota;Desulfuromonadia;Desulfuromonadales;Syntrophotaleaceae;Syntrophotalea;Syntrophotalea carbinolica	1
+44742	Desulfovibrio fairfieldensis	species	Bacteria;Thermodesulfobacteriota;Desulfovibrionia;Desulfovibrionales;Desulfovibrionaceae;Desulfovibrio;Desulfovibrio fairfieldensis	1
+259354	Desulfatibacillum alkenivorans	species	Bacteria;Thermodesulfobacteriota;Desulfobacteria;Desulfobacterales;Desulfatibacillaceae;Desulfatibacillum;Desulfatibacillum alkenivorans	1
+80865	Delftia	genus	Bacteria;Pseudomonadota;Betaproteobacteria;Burkholderiales;Comamonadaceae;Delftia	1
+985	Cytophaga hutchinsonii	species	Bacteria;FCB group;Bacteroidota;Cytophagia;Cytophagales;Cytophagaceae;Cytophaga;Cytophaga hutchinsonii	1
+316068	Leadbetterella byssophila	species	Bacteria;FCB group;Bacteroidota;Cytophagia;Cytophagales;Leadbetterellaceae;Leadbetterella;Leadbetterella byssophila	1
+232259	Belliella baltica	species	Bacteria;FCB group;Bacteroidota;Cytophagia;Cytophagales;Cyclobacteriaceae;Belliella;Belliella baltica	1
+1446467	Hymenobacter swuensis	species	Bacteria;FCB group;Bacteroidota;Cytophagia;Cytophagales;Hymenobacteraceae;Hymenobacter;Hymenobacter swuensis	1
+172045	Elizabethkingia miricola	species	Bacteria;FCB group;Bacteroidota;Flavobacteriia;Flavobacteriales;Weeksellaceae;Elizabethkingia;Elizabethkingia miricola	1
+326320	Dokdonia donghaensis	species	Bacteria;FCB group;Bacteroidota;Flavobacteriia;Flavobacteriales;Flavobacteriaceae;Dokdonia;Dokdonia donghaensis	1
+340044	Blattabacterium cuenoti	species	Bacteria;FCB group;Bacteroidota;Flavobacteriia;Flavobacteriales;Blattabacteriaceae;Blattabacterium;Blattabacterium cuenoti	1
+173	Leptospira interrogans	species	Bacteria;Spirochaetota;Spirochaetia;Leptospirales;Leptospiraceae;Leptospira;Leptospira interrogans	1
+28183	Leptospira santarosai	species	Bacteria;Spirochaetota;Spirochaetia;Leptospirales;Leptospiraceae;Leptospira;Leptospira santarosai	1
+1131707	Sphaerochaeta pleomorpha	species	Bacteria;Spirochaetota;Spirochaetia;Spirochaetales;Sphaerochaetaceae;Sphaerochaeta;Sphaerochaeta pleomorpha	1
+211044	Influenza A virus (A/Puerto Rico/8/1934(H1N1))	no rank	Viruses;Riboviria;Orthornavirae;Negarnaviricota;Polyploviricotina;Insthoviricetes;Articulavirales;Orthomyxoviridae;Alphainfluenzavirus;Alphainfluenzavirus influenzae;H1N1 subtype	12
+1450746	Pithovirus sibericum	species	Viruses;Pithoviruses;Pithovirus;Pithovirus sibericum	1
+693272	Cafeteria roenbergensis virus BV-PW1	no rank	Viruses;Varidnaviria;Bamfordvirae;Nucleocytoviricota;Megaviricetes;Imitervirales;Mimiviridae;Aliimimivirinae;Rheavirus;Rheavirus sinusmexicani	1
+32630	synthetic construct	species	synthetic construct	5
