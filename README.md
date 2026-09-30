@@ -6,63 +6,9 @@ This branch contains test data to be used for automated testing with the [genomi
 
 - `samplesheet.csv`: an input samplesheet.csv.
 - `samplesheet_v1.csv`: an input samplesheet contains three more meta columns: `library_type`, `is_ntc` and `batch`
-- `all_phages_taxid.txt`: a list of phages taxid to be excluded from downstream analysis. This file contains species that have phages in their name,viral taxids that are bacterial hosts, all taxids that belong to the class Caudoviricetes and the contaminant Equine infectious anemia virus with taxid 11665
+- `‎all_phages_taxids_YYMMDD.txt`: a list of phages taxid to be excluded from downstream analysis. This file contains species that have phages in their name,viral taxids that are bacterial hosts, all taxids that belong to the class Caudoviricetes and the contaminant Equine infectious anemia virus with taxid 11665
 - `phages_taxid_test.txt`: a list of phages taxid to be excluded from running test configs.
 
-# For the species with `phage` in their name:
-
-```sh
-conda install bioconda::taxonkit
-# Download NCBI taxonomy database and make sure that is the same used as in taxpasta in taxprofiler
-wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdump.tar.gz
-tar -xzf taxdump.tar.gz
-
-#Extract taxid and species name
-export TAXONKIT_DB="$PWD"
-taxonkit list --ids 1 --show-name --show-rank --indent "" \
-| awk '{name=$0; sub(/^[^ ]+ \[[^]]+\] /,"",name); print $1"\t"name}' \
-> taxid_name_allranks.tsv
-
-#Use grep and sed to pick the taxid of species name containing phage (case insensitive)
-grep -i 'phage' taxid_name_allranks.tsv | sed 's/\t.*//' > phage_taxids.txt
-```
-
-# For viruses with bacteria as host:
-
-```sh
-conda install conda-forge::csvkit
-# Download and gunzip the metadata for all viral nucleotide records
-
-wget https://ftp.ncbi.nlm.nih.gov/genomes/Viruses/AllNuclMetadata/AllNuclMetadata.csv.gz
-gunzip AllNuclMetadata.csv.gz
-
-# Extract host names
-csvcut -c Host AllNuclMetadata.csv \
-| tail -n +2 \
-| grep -v '^""$' \
-| sort -u > hosts.txt
-
-# Map host names to taxids
-taxonkit name2taxid hosts.txt > host_taxids.tsv
-
-# Get the lineage of each host
-cut -f2 host_taxids.tsv \
-| taxonkit lineage \
-| taxonkit reformat
-
-# Identify bacterial hosts
-
-cut -f2 host_taxids.tsv \
-| taxonkit lineage \
-| grep -E 'Bacteria|'
-```
-
-# For taxids that belong the class Caudoviricetes
-```sh
-taxonkit list --ids 2731618 | sed 's/^[[:space:]]*//' > Caudoviricetes_taxids.txt
-```
-
-Concatenate all the three files together.
 
 - **blastdb/**
 
@@ -89,3 +35,96 @@ Concatenate all the three files together.
 - **genomesdb/**
   - `taxid2genome.map`: A map file containing taxonomic IDs, organism names and corresponding genome files.
   - `genomes/`: Genome files listed in the map file.
+
+
+### For creating the phage list: ###
+
+1. Extract accession, species and host
+
+```
+// Download the AllNucleMetadata and make sure you have csvtk installed in a conda environment
+wget https://ftp.ncbi.nlm.nih.gov/genomes/Viruses/AllNuclMetadata/AllNuclMetadata.csv.gz
+gunzip AllNuclMetadata.csv.gz
+
+csvtk cut -f 1,7,19 AllNuclMetadata.csv > extracted_info
+```
+
+2. Extract unique hosts
+
+```
+csvtk cut -f 3 extracted_info | tail -n +2 | sed '/^$/d' | sort -u > hosts.txt
+```
+
+3. Convert names to taxids
+
+```
+//Make sure to have taxonkid installed in a conda env
+taxonkit name2taxid hosts.txt > host_taxids.txt
+```
+
+4. Get lineages for the hosts
+
+```
+cut -f2 host_taxids.txt | grep -E '^[0-9]+$' | taxonkit lineage > host_lineages.txt
+```
+
+5. Keep bacterial hosts and get their taxids:
+
+```
+grep 'Bacteria' host_lineages.txt > extracted_bacterial_hosts.txt
+cut -f1 extracted_bacterial_hosts.txt | sort -n -u > bacterial_host_taxids.txt
+```
+
+6. Map the bacterial taxids back to names
+
+```
+awk -F'\t' '
+NR==FNR {b[$1]=1; next}
+($2 in b) {print $1}
+' bacterial_host_taxids.txt host_taxids.txt \
+> bacterial_host_names.txt
+```
+
+7. Find the viruses that are associated with bacterial hosts
+
+```
+awk -F',' '
+NR==FNR {b[$0]=1; next}
+FNR==1 {next}
+($3 in b) {print}
+' bacterial_host_names.txt extracted_info \
+> viral_bacterial_hosts.csv
+```
+
+8. Extract the viral accessions
+
+// Make sure you have NCBI datasets installed
+```
+cut -d',' -f1 viral_bacterial_hosts.csv > viral_accessions.txt
+datasets summary virus genome accession --inputfile viral_accessions.txt > viral_accessions.jsonl
+```
+
+9. Extract the accession and viral taxids
+
+// Make sure jq is installed
+
+```
+jq -r '
+    [
+        .reports[]
+        | [
+            .accession,
+            .virus.tax_id
+        ]
+    ][]
+    | @tsv
+' viral_accessions.jsonl > viral_accessions_taxids.txt
+```
+
+10. Keep only the taxids
+
+```
+awk '{print $NF}' viral_accessions_taxids.txt > bacterial_host_viral_taxids.txt
+```
+
+After you have added any additional taxids that need to be excluded, rename the file to this format: `all_phages_taxids_YYMMDD.txt`
