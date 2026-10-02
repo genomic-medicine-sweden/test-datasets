@@ -8,10 +8,10 @@
 # that appear in the chrM test sample. All other gnomAD MT alleles at those positions
 # are also kept (needed for VEP --custom exact matching on multi-allelic sites).
 #
-# INFO fields retained (17): the 14 used by extra_vep_options_snv_mito --custom in nallo
+# INFO fields retained (17), as candidates for a mito --custom annotation (not wired into nallo yet):
 #   hap_defining_variant, AN, AC_hom, AC_het, AF_hom, AF_het, max_hl,
-#   hap_AN, hap_AC_hom, hap_AC_het, hap_AF_hom, hap_AF_het, hapmax_AF_hom, hapmax_AF_het
-# plus mitotip_score, pon_ml_probability_of_pathogenicity, common_low_heteroplasmy
+#   hap_AN, hap_AC_hom, hap_AC_het, hap_AF_hom, hap_AF_het, hapmax_AF_hom, hapmax_AF_het,
+#   mitotip_score, pon_ml_probability_of_pathogenicity, common_low_heteroplasmy
 #
 # Requirements: bcftools >= 1.17, tabix, curl
 
