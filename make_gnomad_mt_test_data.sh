@@ -8,9 +8,10 @@
 # that appear in the chrM test sample. All other gnomAD MT alleles at those positions
 # are also kept (needed for VEP --custom exact matching on multi-allelic sites).
 #
-# INFO fields retained (14): those used by extra_vep_options_snv_mito --custom in nallo.
+# INFO fields retained (17): the 14 used by extra_vep_options_snv_mito --custom in nallo
 #   hap_defining_variant, AN, AC_hom, AC_het, AF_hom, AF_het, max_hl,
 #   hap_AN, hap_AC_hom, hap_AC_het, hap_AF_hom, hap_AF_het, hapmax_AF_hom, hapmax_AF_het
+# plus mitotip_score, pon_ml_probability_of_pathogenicity, common_low_heteroplasmy
 #
 # Requirements: bcftools >= 1.17, tabix, curl
 
@@ -34,19 +35,14 @@ curl -L -o "${GNOMAD_RAW}.tbi" "${GNOMAD_URL}.tbi"
 # Extract regions from input VCF (one region per variant position)
 REGIONS=$(bcftools view -H "$INPUT_VCF" | awk '{print $1":"$2"-"$2}' | tr '\n' ',' | sed 's/,$//')
 
-# INFO fields to drop (everything except the 14 we keep)
-DROP="INFO/age_hist_het_bin_freq,INFO/age_hist_het_n_larger,INFO/age_hist_het_n_smaller"
-DROP="$DROP,INFO/age_hist_hom_bin_freq,INFO/age_hist_hom_n_larger,INFO/age_hist_hom_n_smaller"
-DROP="$DROP,INFO/base_qual_hist,INFO/contamination_hist,INFO/dp_hist_all_bin_freq"
-DROP="$DROP,INFO/dp_hist_all_n_larger,INFO/dp_hist_alt_bin_freq,INFO/dp_hist_alt_n_larger"
-DROP="$DROP,INFO/dp_mean,INFO/excluded_AC,INFO/faf_hapmax_hom,INFO/filters,INFO/hap_faf_hom"
-DROP="$DROP,INFO/hap_hl_hist,INFO/heteroplasmy_below_min_het_threshold_hist,INFO/hl_hist"
-DROP="$DROP,INFO/mq_mean,INFO/pop_AC_het,INFO/pop_AC_hom,INFO/pop_AF_het,INFO/pop_AF_hom"
-DROP="$DROP,INFO/pop_AN,INFO/pop_hl_hist,INFO/position_hist,INFO/strand_bias_hist"
-DROP="$DROP,INFO/tlod_mean,INFO/variant_collapsed,INFO/vep,INFO/weak_evidence_hist"
+# INFO fields to keep (all other INFO fields are removed)
+KEEP="INFO/hap_defining_variant,INFO/AN,INFO/AC_hom,INFO/AC_het,INFO/AF_hom,INFO/AF_het,INFO/max_hl"
+KEEP="$KEEP,INFO/hap_AN,INFO/hap_AC_hom,INFO/hap_AC_het,INFO/hap_AF_hom,INFO/hap_AF_het"
+KEEP="$KEEP,INFO/hapmax_AF_hom,INFO/hapmax_AF_het"
+KEEP="$KEEP,INFO/mitotip_score,INFO/pon_ml_probability_of_pathogenicity,INFO/common_low_heteroplasmy"
 
 echo "Subsetting to $(bcftools view -H "$INPUT_VCF" | wc -l) positions and stripping unused INFO fields..."
-bcftools view -r "$REGIONS" "$GNOMAD_RAW" |     bcftools annotate -x "$DROP" -O z -o "$OUTPUT_VCF"
+bcftools view -r "$REGIONS" "$GNOMAD_RAW" | bcftools annotate -x "^$KEEP" -O z -o "$OUTPUT_VCF"
 
 tabix -p vcf "$OUTPUT_VCF"
 
