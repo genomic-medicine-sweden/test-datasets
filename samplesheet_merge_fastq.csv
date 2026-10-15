@@ -1,0 +1,4 @@
+sample,fastq_1,fastq_2
+SAMPLE_1,https://github.com/genomic-medicine-sweden/test-datasets/raw/refs/heads/16s/testdata/medium_Mock_dil_1_2_BC1_a.fastq.gz,
+SAMPLE_1,https://github.com/genomic-medicine-sweden/test-datasets/raw/refs/heads/16s/testdata/medium_Mock_dil_1_2_BC1_b.fastq.gz,
+SAMPLE_2,https://github.com/genomic-medicine-sweden/test-datasets/raw/refs/heads/16s/testdata/medium_Mock_dil_1_2_BC3.fastq.gz,
