@@ -40,7 +40,7 @@ def main():
             continue
 
         seq = read.query_sequence
-        qual = read.qual
+        qual = read.query_qualities_str
 
         if seq is None or qual is None:
             continue
@@ -59,24 +59,28 @@ def main():
         else:
             read_suffix = ""
 
+        new_seq = seq
+        new_qual = qual
+        # overlap → splice out deletion
+        if read_end >= args.start and ref_pos <= args.end:
+            left = max(0, args.start - ref_pos)
+            right = max(0, read_end - args.end)
+
+            if right > 0:
+                new_seq = seq[:left] + seq[-right:]
+                new_qual = qual[:left] + qual[-right:]
+            else:
+                new_seq = seq[:left]
+                new_qual = qual[:left]
+        
         # Add RG into FASTQ header
         header = f"{read.query_name}{read_suffix} RG:Z:{rg}"
-
-        # no overlap → passthrough
-        if read_end < args.start or ref_pos > args.end:
-            out.write(f"@{header}\n{seq}\n+\n{qual}\n")
-            continue
-
-        # overlap → splice out deletion
-        left = max(0, args.start - ref_pos)
-        right = max(0, read_end - args.end)
-
-        if right > 0:
-            new_seq = seq[:left] + seq[-right:]
-            new_qual = qual[:left] + qual[-right:]
-        else:
-            new_seq = seq[:left]
-            new_qual = qual[:left]
+        if read.has_tag("qs"):
+            header += f"\tqs:i:{read.get_tag('qs')}"
+        if read.has_tag("qe"):
+            # Keep the original query start and account for removed bases.
+            qe = read.get_tag("qe") - (len(seq) - len(new_seq))
+            header += f"\tqe:i:{qe}"
 
         out.write(f"@{header}\n{new_seq}\n+\n{new_qual}\n")
 
