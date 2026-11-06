@@ -58,7 +58,7 @@ Only files referenced by the autoseq pipeline are kept. Tarballs are unpacked by
 bash scripts/curate_test_data.sh
 ```
 
-Pulls source files from the `sarek` and `modules` branches of nf-core/test-datasets into `.staging/` (gitignored) and writes outputs into `reference/` and `testdata/`. Requires `samtools`, `bcftools`, `bedtools`, `bwa`, `tabix`, `bgzip`. The script also produces files (e.g. GRCh38) not kept on this branch; commit only what the pipeline references. See each script's header for usage.
+Pulls source files from the `sarek` and `modules` branches of nf-core/test-datasets into `.staging/` (gitignored) and writes outputs into `reference/` and `testdata/`. Requires `samtools`, `bcftools`, `bedtools`, `bwa`, `tabix`, `bgzip`. See each script's header for usage.
 
 ## Synthesized files
 
