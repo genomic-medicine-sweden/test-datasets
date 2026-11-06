@@ -61,7 +61,8 @@ def main():
 
         new_seq = seq
         new_qual = qual
-        # overlap → splice out deletion
+
+        # If there is an overlap → splice out deletion; If there is no overlap, keep the read as is and add the tags
         if read_end >= args.start and ref_pos <= args.end:
             left = max(0, args.start - ref_pos)
             right = max(0, read_end - args.end)
