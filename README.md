@@ -1,38 +1,79 @@
 # ![nfcore/test-datasets](docs/images/test-datasets_logo.png)
-Test data to be used for automated testing with the nf-core pipelines
 
-> ⚠️ **Do not merge your test data to `master`! Each pipeline has a dedicated branch (and a special one for modules)**
+# genomic-medicine-sweden/test-datasets: `autoseq` branch
 
-## Introduction
+Test data for the [autoseq](https://github.com/genomic-medicine-sweden/autoseq) pipeline's `-profile test` / `-profile test_umi` and its module/subworkflow nf-tests.
 
-nf-core is a collection of high quality Nextflow pipelines. This repository contains various files for CI and unit testing of nf-core pipelines and infrastructure.
+> ⚠️ **Do not merge this branch into `master`!** Each pipeline has a dedicated branch in this repository.
 
-The principle for nf-core test data is as small as possible, as large as necessary. Please see the [guidelines](https://nf-co.re/docs/contributing/test_data_guidelines) for more detailed information. Always ask for guidance on the [nf-core slack](https://nf-co.re/join) before adding new test data.
+## Using this data
 
-## Documentation
-
-nf-core/test-datasets comes with documentation in the `docs/` directory:
-
-01. [Add a new  test dataset](https://github.com/nf-core/test-datasets/blob/master/docs/ADD_NEW_DATA.md)
-02. [Use an existing test dataset](https://github.com/nf-core/test-datasets/blob/master/docs/USE_EXISTING_DATA.md)
-
-## Downloading test data
-
-Due the large number of large files in this repository for each pipeline, we highly recommend cloning only the branches you would use.
+Clone only this branch:
 
 ```bash
-git clone <url> --single-branch --branch <pipeline/modules/branch_name>
+git clone https://github.com/genomic-medicine-sweden/test-datasets.git --single-branch --branch autoseq
 ```
 
-To subsequently clone other branches[^1]
+Raw base URL for `pipelines_testdata_base_path`:
+
+```
+https://raw.githubusercontent.com/genomic-medicine-sweden/test-datasets/refs/heads/autoseq/
+```
+
+## Layout
+
+```
+reference/GRCh37/
+  genome/                FASTA + .fai + .dict (sarek "small" b37 decoy)
+  annotations/           dbSNP + gnomAD (sarek small subsets), cancer-gene curation CSV
+  targets/               test_panel slopped BED + interval_list, jumble reference RDS
+  gridss/                GRIDSS PON, known fusions, repeatmasker, gridss.properties
+  hmfdata/               SAGE PON, somatic hotspots, high-confidence regions
+  gridss_index.tar.gz    GRIDSS BWA index
+  ensembl_data.tar.gz    HMF Ensembl-data cache subset
+  vep.tar.gz             Ensembl VEP cache skeleton (homo_sapiens/115_GRCh37)
+testdata/
+  csv/                   samplesheet_grch37.csv (test), samplesheet_grch37_umi.csv (test_umi)
+  fastqs/GRCh37/         sarek tiny tumor/normal FASTQs (2 lanes per sample)
+  fastqs/GRCh37_umi/     sarek tiny tumor/normal FASTQs with UMIs (2 lanes per sample)
+  bam/                   deduplicated TUMOR, NORMAL and 1234T BAMs
+  vcf/                   HaplotypeCaller, Mutect2/SAGE PASS-only and VEP-annotated somatic VCFs
+  gridss/                GRIDSS SV VCF (GRIPSS tests)
+  jumble/                Jumble CNV segments + calls (tumor, normal)
+  purecn/                CNVkit cnr/seg + Mutect2 calls (PureCN tests)
+  annotate_cnvs/         CNV segments + cancer-gene annotation CSV
+scripts/
+  curate_test_data.sh          Regenerates genome, annotations, targets, FASTQs and samplesheets from upstream sources
+  make_umi_test_fastqs.sh      Builds GRCh37_umi FASTQs + samplesheet
+  make_mock_ensembl_data.sh    Builds the HMF ensembl_data subset
+  make_mock_gridss_vcf.py      Builds testdata/gridss/TUMOR_NORMAL.gridss.vcf.gz
+  make_mock_jumble_reference.R Builds the mock jumble reference RDS
+```
+
+Only files referenced by the autoseq pipeline are kept. Tarballs are unpacked by the `PREPARE_REFERENCES` subworkflow.
+
+## Regenerating
 
 ```bash
-git remote set-branches --add origin [remote-branch]
-git fetch
+bash scripts/curate_test_data.sh
 ```
 
-## Support
+Pulls source files from the `sarek` and `modules` branches of nf-core/test-datasets into `.staging/` (gitignored) and writes outputs into `reference/` and `testdata/`. Requires `samtools`, `bcftools`, `bedtools`, `bwa`, `tabix`, `bgzip`. The script also produces files (e.g. GRCh38) not kept on this branch; commit only what the pipeline references. See each script's header for usage.
 
-For further information or help, don't hesitate to get in touch on our [Slack organisation](https://nf-co.re/join/slack) (a tool for instant messaging).
+## Synthesized files
 
-[^1]: From [stackoverflow](https://stackoverflow.com/a/60846265/11502856)
+HMF/SAGE/GRIDSS resources have no public downsampled equivalents; minimal-but-valid versions are used:
+
+| File | Form |
+| --- | --- |
+| `hmfdata/KnownHotspots.somatic.37.vcf.gz` | VCF header only, contigs from the FASTA index |
+| `hmfdata/SageGermlinePon.1000x.37.tsv.gz` | Column header only |
+| `hmfdata/NA12878_GIAB_*_highconf.bed.gz`, `gridss/sgl_pon.37.bed.gz` | One placeholder BED record |
+| `gridss/sv_pon.37.bedpe.gz`, `gridss/known_fusions.37.bedpe` | One placeholder BEDPE entry |
+| `gridss/repeat_mask_data.37.fa.gz` | Single short simple-repeat sequence |
+| `ensembl_data.tar.gz` | Public Ensembl records subset to the test contigs |
+| `annotations/cancer_gene_annotations_for_curation.37.v2.csv` | Header + one placeholder row |
+| `targets/test_panel.bed.reference.RDS` | Mock jumble reference with dummy counts |
+| `testdata/gridss/TUMOR_NORMAL.gridss.vcf.gz` | GRIDSS header + five synthetic breakend pairs |
+
+These allow SAGE / GRIDSS / GRIPSS / annotation steps to run but do not produce biologically meaningful calls.
