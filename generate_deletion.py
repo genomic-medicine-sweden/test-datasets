@@ -57,7 +57,7 @@ def main():
             continue
 
         seq = read.query_sequence
-        qual = read.query_qualities_str
+        qual = read.qual
 
         if seq is None or qual is None:
             continue
