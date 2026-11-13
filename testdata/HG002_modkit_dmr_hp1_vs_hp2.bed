@@ -1,0 +1,2 @@
+#chrom	start	end	name	score	strand	a_counts	a_total	b_counts	b_total	a_mod_percentages	b_mod_percentages	a_pct_modified	b_pct_modified	effect_size	cohen_h	cohen_h_low	cohen_h_high
+chr16	172876	173710	chr16:172876-173710	-0.6104610812756164	.	h:0,m:82	351	h:0,m:116	472	h:0.00,m:23.36	h:0.00,m:24.58	0.23361823	0.2457627	0.012144476	0.02845045239524202	0	0.16659172452863905
