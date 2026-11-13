@@ -104,10 +104,13 @@ function prepare_bam {
   local out_bam=$5
   local rg_file="tmp/$(basename $out_bam .bam).rg.txt"
 
-  # Add chrM deletion to test mitochondrial variant callers
+  # Add chrM deletion; preserve source qs/qe in FASTQ headers, adjusting qe for deleted bases.
+  # PacBio reads (map-hifi) are checked for missing qs/qe, which pbmm2 needs to map them.
+  local platform=ont
+  [[ ${minimap_preset} == map-hifi ]] && platform=pacbio
   samtools view -M -L tmp/chrM.bed ${in_bam} -h -O BAM -u -x HP,PS,AS,CC,CG,CP,H1,H2,HI,H0,IH,MC,MD,MQ,NM,SA,TS > tmp/tmp_chrM.bam
   samtools index tmp/tmp_chrM.bam
-  python3 generate_deletion.py --input tmp/tmp_chrM.bam --contig chrM --start 10000 --end 12000 \
+  python3 generate_deletion.py --input tmp/tmp_chrM.bam --contig chrM --start 10000 --end 12000 --platform ${platform} \
     | minimap2 -a -x ${minimap_preset} -y --secondary=no -Y --MD -t 36 tmp/hg38.test.fa.gz - \
     | samtools sort -O BAM > tmp/chrM_with_deletion.bam
   samtools index tmp/chrM_with_deletion.bam
