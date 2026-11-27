@@ -33,7 +33,7 @@ reference/GRCh37/
   ensembl_data.tar.gz    HMF Ensembl-data cache subset
   vep.tar.gz             Ensembl VEP cache skeleton (homo_sapiens/115_GRCh37)
 testdata/
-  csv/                   samplesheet_grch37{,_umi}.csv (test, test_umi), samplesheet_grch37_tumor_only{,_umi}.csv (test_tumor_only, test_tumor_only_umi)
+  csv/                   samplesheet_grch37{,_umi}.csv (test_tumor_normal), samplesheet_grch37_tumor_only{,_umi}.csv (test_tumor_only)
   fastqs/GRCh37/         sarek tiny tumor/normal FASTQs (2 lanes per sample)
   fastqs/GRCh37_umi/     sarek tiny tumor/normal FASTQs with UMIs (2 lanes per sample)
   bam/                   deduplicated TUMOR, NORMAL and 1234T BAMs
