@@ -2,7 +2,7 @@
 
 # genomic-medicine-sweden/test-datasets: `autoseq` branch
 
-Test data for the [autoseq](https://github.com/genomic-medicine-sweden/autoseq) pipeline's `-profile test` / `-profile test_umi` and its module/subworkflow nf-tests.
+Test data for the [autoseq](https://github.com/genomic-medicine-sweden/autoseq) pipeline's `-profile test` / `-profile test_umi` / `-profile test_tumor_only` / `-profile test_tumor_only_umi` and its module/subworkflow nf-tests.
 
 > ⚠️ **Do not merge this branch into `master`!** Each pipeline has a dedicated branch in this repository.
 
@@ -25,7 +25,7 @@ https://raw.githubusercontent.com/genomic-medicine-sweden/test-datasets/refs/hea
 ```
 reference/GRCh37/
   genome/                FASTA + .fai + .dict (sarek "small" b37 decoy)
-  annotations/           dbSNP + gnomAD (sarek small subsets), cancer-gene curation CSV
+  annotations/           dbSNP + gnomAD (sarek small subsets), Mutect2 PoN (GATK b37 subset), cancer-gene curation CSV
   targets/               test_panel slopped BED + interval_list, jumble reference RDS
   gridss/                GRIDSS PON, known fusions, repeatmasker, gridss.properties
   hmfdata/               SAGE PON, somatic hotspots, high-confidence regions
@@ -33,7 +33,7 @@ reference/GRCh37/
   ensembl_data.tar.gz    HMF Ensembl-data cache subset
   vep.tar.gz             Ensembl VEP cache skeleton (homo_sapiens/115_GRCh37)
 testdata/
-  csv/                   samplesheet_grch37.csv (test), samplesheet_grch37_umi.csv (test_umi)
+  csv/                   samplesheet_grch37{,_umi}.csv (test_tumor_normal), samplesheet_grch37_tumor_only{,_umi}.csv (test_tumor_only)
   fastqs/GRCh37/         sarek tiny tumor/normal FASTQs (2 lanes per sample)
   fastqs/GRCh37_umi/     sarek tiny tumor/normal FASTQs with UMIs (2 lanes per sample)
   bam/                   deduplicated TUMOR, NORMAL and 1234T BAMs
